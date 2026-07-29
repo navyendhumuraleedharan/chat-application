@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import logger from './config/logger.js';
+import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
 
 // Load environment variables
 dotenv.config();
@@ -25,6 +26,12 @@ app.get('/', (req, res) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+// 404 Route Not Found Handler
+app.use(notFound);
+
+// Global Centralized Error Handler
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
