@@ -3,7 +3,13 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import logger from './config/logger.js';
+
+// Import Routes
 import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import conversationRoutes from './routes/conversationRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
+
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
 
 // Load environment variables
@@ -28,7 +34,11 @@ app.get('/', (req, res) => {
   });
 });
 
+// API Route Mounts
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/conversations', conversationRoutes);
+app.use('/api/messages', messageRoutes);
 
 // 404 Route Not Found Handler
 app.use(notFound);

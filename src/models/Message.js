@@ -8,10 +8,10 @@ const messageSchema = new mongoose.Schema(
       required: [true, 'Conversation ID is required'],
       index: true,
     },
-    senderId: {
+    sender: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: [true, 'Sender ID is required'],
+      required: true,
     },
     content: {
       type: String,
@@ -28,6 +28,8 @@ const messageSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+messageSchema.index({ conversationId: 1, createdAt: -1 });
 
 const Message = mongoose.model('Message', messageSchema);
 export default Message;
