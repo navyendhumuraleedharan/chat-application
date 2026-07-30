@@ -169,3 +169,49 @@ export const registerWithOTP = async (req, res, next) => {
     next(error);
   }
 };
+
+// @desc    Authenticate user & get JWT token
+// @route   POST /api/auth/login
+// @access  Public
+export const loginUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return next(new AppError('Please provide email and password', 400));
+    }
+
+    // Check user and match password
+    const user = await userRepository.findByEmail(email);
+
+    if (!user || !(await user.matchPassword(password))) {
+      return next(new AppError('Invalid email or password', 401));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        token: generateToken(user._id),
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc    Get current user profile
+// @route   GET /api/auth/me
+// @access  Private
+export const getMe = async (req, res, next) => {
+  try {
+    res.status(200).json({
+      status: 'success',
+      data: req.user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
