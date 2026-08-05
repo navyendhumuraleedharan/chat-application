@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import connectDB from './config/db.js';
-import logger from './config/logger.js';
+// import dotenv from 'dotenv';
+// import connectDB from './config/db.js';
+// import logger from './config/logger.js';
 
 // Import Routes
 import authRoutes from './routes/authRoutes.js';
@@ -13,10 +13,10 @@ import messageRoutes from './routes/messageRoutes.js';
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
 
 // Load environment variables
-dotenv.config();
+// dotenv.config();
 
 // Connect to MongoDB
-connectDB();
+// connectDB();
 
 const app = express();
 
@@ -46,10 +46,10 @@ app.use(notFound);
 // Global Centralized Error Handler
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  logger.info(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   logger.info(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+// });
 
 export default app;

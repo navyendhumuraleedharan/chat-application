@@ -37,6 +37,23 @@ class MessageRepository {
       hasMore,
     };
   }
+
+  // Update individual message status ('sent' | 'delivered' | 'seen')
+  async updateStatus(messageId, status) {
+    return await Message.findByIdAndUpdate(messageId, { status }, { new: true });
+  }
+
+  // Mark all unread messages in a conversation as seen by the reader
+  async markConversationMessagesAsSeen(conversationId, readerId) {
+    return await Message.updateMany(
+      {
+        conversationId,
+        sender: { $ne: readerId }, // Don't update user's own messages
+        status: { $ne: 'seen' },
+      },
+      { status: 'seen' }
+    );
+  }
 }
 
 export default new MessageRepository();
