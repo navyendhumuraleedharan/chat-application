@@ -1,4 +1,5 @@
 import express from 'express';
+import { validate } from '../middlewares/validateMiddleware.js';
 import {
   getMe,
   loginUser,
