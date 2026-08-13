@@ -1,6 +1,6 @@
 import messageRepository from '../repositories/messageRepository.js';
 import conversationRepository from '../repositories/conversationRepository.js';
-import AppError from '../utils/appError.js';
+import AppError from '../utils/AppError.js';
 
 // @desc    Get historic messages for a conversation (Cursor-Based Pagination)
 // @route   GET /api/messages/:conversationId?cursor=msg_id&limit=20

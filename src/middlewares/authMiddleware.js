@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import AppError from '../utils/appError.js';
+import AppError from '../utils/AppError.js';
 import userRepository from '../repositories/userRepository.js';
 
 export const protect = async (req, res, next) => {

@@ -1,6 +1,6 @@
 import conversationRepository from '../repositories/conversationRepository.js';
 import userRepository from '../repositories/userRepository.js';
-import AppError from '../utils/appError.js';
+import AppError from '../utils/AppError.js';
 
 // @desc    Initiate or fetch direct conversation
 // @route   POST /api/conversations

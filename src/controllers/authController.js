@@ -2,7 +2,7 @@ import userRepository from '../repositories/userRepository.js';
 import OTP from '../models/Otp.js';
 import sendEmail from '../utils/sendEmail.js';
 import generateToken from '../utils/generateToken.js';
-import AppError from '../utils/appError.js';
+import AppError from '../utils/AppError.js';
 
 // @desc    Step 1: Request OTP for email verification
 // @route   POST /api/auth/send-otp
