@@ -16,12 +16,12 @@ const transports = [
     format: isProduction
       ? baseFormat
       : winston.format.combine(
-        winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-        winston.format.colorize(),
-        winston.format.printf(({ level, message, timestamp, stack }) => {
-          return `[${timestamp}] ${level}: ${stack || message}`;
-        })
-      )
+          winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+          winston.format.colorize(),
+          winston.format.printf(({ level, message, timestamp, stack }) => {
+            return `[${timestamp}] ${level}: ${stack || message}`;
+          })
+        ),
   }),
 ];
 
