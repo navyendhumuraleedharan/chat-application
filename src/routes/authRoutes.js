@@ -1,5 +1,6 @@
 import express from 'express';
 import { validate } from '../middlewares/validateMiddleware.js';
+import { registerSchema, loginSchema } from '../validators/schemas.js';
 import {
   getMe,
   loginUser,
@@ -14,8 +15,8 @@ const router = express.Router();
 
 router.post('/send-otp', otpRateLimiter, sendOTP);
 router.post('/resend-otp', otpRateLimiter, resendOTP);
-router.post('/register', registerWithOTP);
-router.post('/login', loginUser);
+router.post('/register', validate(registerSchema), registerWithOTP);
+router.post('/login', validate(loginSchema), loginUser);
 
 // Protected routes (JWT required)
 router.get('/me', protect, getMe);
